@@ -10,8 +10,8 @@ class ContactController {
     
         await Mail.send( data , (message) => {
           message
-            .to('')
-            .from('<from-email>')
+            .to('ebestteam225@gmail.com')
+            .from('request.email')
         })
     
         return 'Registered successfully'
