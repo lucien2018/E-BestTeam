@@ -709,6 +709,30 @@ section {
     background-attachment: fixed;
   }
 }
+.prd{
+  font-family: "Nunito", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 28px;
+  border-radius: 25px;
+  transition: 0.5s;
+  margin-top: 10px;
+  border: 2px solid #e43c5c;
+  color: #e43c5c;
+}
+.prd:hover{
+  background: #e43c5c;
+  border: 2px solid #e43c5c;
+  color: white;
+}
+@media (min-width: 1024px) {
+  .prd {
+    background-attachment: fixed;
+  }
+}
 
 /*--------------------------------------------------------------
 # Portfolio
