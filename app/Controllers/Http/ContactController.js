@@ -41,6 +41,6 @@ class ContactController {
                 }); 
 
     }
-}ss
+}
 
 module.exports = ContactController
