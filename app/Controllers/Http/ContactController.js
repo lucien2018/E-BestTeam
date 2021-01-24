@@ -1,21 +1,44 @@
 'use strict'
 
-const Mail = use('Mail')
-
+require('dotenv').config();
+const mailer = require('nodemailer');
+const Mail = use('App/Models/Mail');
+const smtpTransport = require('nodemailer-smtp-transport');
 class ContactController {
 
-    async store ({ request }) {
-        const data = request.only(['nom', 'sujet','email','messages' ])
-        //const user = await User.create(data)
-    
-        await Mail.send( data , (message) => {
-          message
-            .to('ebestteam225@gmail.com')
-            .from('request.email')
-        })
-    
-        return 'Registered successfully'
-      }
+    async envoyerMail ({ request }) {
+
+       const data = request.post()
+       
+        await Mail.create(data)
+
+  const transporter = mailer.createTransport (smtpTransport ({ 
+
+          service: 'gmail', 
+          hôte: 'smtp.gmail.com', 
+          auth: {         
+               user: 'process.env.EMAIL_USER',         
+               pass: 'process.env.EMAIL_PASS'     
+          } 
+     })); 
+        const from = request.only([ 'email']);
+        const subject = request.only([ 'sujet']);
+        const message = request.only([ 'messages']);
+     
+     const mailOptions = { 
+      from: from, 
+      to: 'ebestteam225@gmzil.com', 
+      subject: subject, 
+      html: message 
+  };
+   transporter.sendMail (mailOptions, function (error, info) { 
+    if (error) { 
+        console.log (error);   
+    } else {      
+        console.log ('Email sent:' + info.response);   
+    }    
+}); 
+
 }
 
 module.exports = ContactController
