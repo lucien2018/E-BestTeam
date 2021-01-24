@@ -6,7 +6,7 @@ const Mail = use('App/Models/Mail');
 const smtpTransport = require('nodemailer-smtp-transport');
 class ContactController {
 
-    async envoyerMail ({ request }) {
+    async envoyerMail ({ request, response}) {
 
        //const data = request.post()
        
@@ -39,8 +39,9 @@ class ContactController {
                 console.log ('Email sent:' + info.response);   
             }    
                 }); 
-
+       response.status(201).json({message:"Merci pour votre Message"})
     }
+    
 }
 
 module.exports = ContactController
