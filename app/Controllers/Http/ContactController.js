@@ -12,7 +12,7 @@ class ContactController {
        
         await Mail.create(data)
 
-  const transporter = mailer.createTransport (smtpTransport ({ 
+        const transporter = mailer.createTransport (smtpTransport ({ 
 
           service: 'gmail', 
           hôte: 'smtp.gmail.com', 
@@ -20,25 +20,27 @@ class ContactController {
                user: 'process.env.EMAIL_USER',         
                pass: 'process.env.EMAIL_PASS'     
           } 
-     })); 
+        })); 
+
         const from = request.only([ 'email']);
         const subject = request.only([ 'sujet']);
         const message = request.only([ 'messages']);
      
-     const mailOptions = { 
-      from: from, 
-      to: 'ebestteam225@gmzil.com', 
-      subject: subject, 
-      html: message 
-  };
-   transporter.sendMail (mailOptions, function (error, info) { 
-    if (error) { 
-        console.log (error);   
-    } else {      
-        console.log ('Email sent:' + info.response);   
-    }    
-}); 
+            const mailOptions = { 
+            from: from, 
+            to: 'ebestteam225@gmzil.com', 
+            subject: subject, 
+            html: message 
+         };
+        transporter.sendMail (mailOptions, function (error, info) { 
+            if (error) { 
+                console.log (error);   
+            } else {      
+                console.log ('Email sent:' + info.response);   
+            }    
+                }); 
 
+    }
 }
 
 module.exports = ContactController
