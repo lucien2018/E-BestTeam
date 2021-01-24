@@ -8,9 +8,9 @@ class ContactController {
 
     async envoyerMail ({ request }) {
 
-       const data = request.post()
+       //const data = request.post()
        
-        await Mail.create(data)
+       // await Mail.create(data)
 
         const transporter = mailer.createTransport (smtpTransport ({ 
 
@@ -41,6 +41,6 @@ class ContactController {
                 }); 
 
     }
-}
+}ss
 
 module.exports = ContactController
