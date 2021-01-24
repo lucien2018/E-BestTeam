@@ -1,5 +1,4 @@
 'use strict'
-
 require('dotenv').config();
 const mailer = require('nodemailer');
 const Mail = use('App/Models/Mail');
@@ -12,7 +11,7 @@ class ContactController {
        
        // await Mail.create(data)
 
-        const transporter = mailer.createTransport (smtpTransport ({ 
+        const transporter = mailer.createTransport(smtpTransport ({ 
 
           service: 'gmail', 
           hôte: 'smtp.gmail.com', 
@@ -32,6 +31,14 @@ class ContactController {
             subject: subject, 
             html: message 
          };
+         transporter.verify(function(error,success){
+            if(error){
+                console.log(error);
+            }else{
+                console.log(success + "le service est prêt");
+            }
+         }),
+
         transporter.sendMail (mailOptions, function (error, info) { 
             if (error) { 
                 console.log (error);   
